@@ -11,7 +11,7 @@ class Solution {
             }
             else{
                 res=mid;
-                high=high-1;
+                high=mid-1;
             }
         }
         return res;
