@@ -4,45 +4,40 @@ class Solution {
         int low=0;
         int high=n-1;
         int index=-1;
-        int mid=0;
+        int guess=0;
         while(low<=high){
-            mid=(low+high)/2;
-            if(nums[mid]>nums[n-1]){
-                low=mid+1;
+            guess=(low+high)/2;
+            if(nums[guess]>nums[n-1]){
+                if(nums[guess]==target){
+                    return guess;
+                }
+               else if(nums[guess]<target){
+                low=guess+1;
+               }
+               else if( nums[guess]>target){
+                if(nums[0]>target){
+                    low=guess+1;
+                }
+                else{
+                    high=guess-1;
+                }
+               }
             }
             else{
-            index=mid;
-            high=mid-1;
-            }
-        }
-        low=0;
-        high=index-1;
-        mid=0;
-        while(low<=high){
-            mid=(low+high)/2;
-            if(nums[mid]==target){
-                return mid;
-            }
-            else if(nums[mid]>target){
-                high=mid-1;
-            }
-            else{
-                low=mid+1;
-            }
-        }
-        low=index;
-        high=n-1;
-        mid=0;
-          while(low<=high){
-            mid=(low+high)/2;
-            if(nums[mid]==target){
-                return mid;
-            }
-            else if(nums[mid]>target){
-                high=mid-1;
-            }
-            else{
-                low=mid+1;
+                if(nums[guess]==target){
+                    return guess;
+                }
+                else if(nums[guess]>target){
+                    high=guess-1;
+                }
+                else if(nums[guess]<target){
+                    if(nums[n-1]<target){
+                        high=guess-1;
+                    }
+                    else{
+                        low=guess+1;
+                    }
+                }
             }
         }
         return -1;
